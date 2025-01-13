@@ -1,17 +1,17 @@
-import { renderHook, act } from '@testing-library/react';
-import { AuthProvider, useAuth } from '@/app/context/auth-context';
-import { useRouter } from 'next/navigation';
+import { renderHook, act } from "@testing-library/react";
+import { AuthProvider, useAuth } from "@/app/context/auth-context";
+import { useRouter } from "next/navigation";
 
-jest.mock('next/navigation');
+jest.mock("next/navigation");
 
-describe('AuthContext', () => {
+describe("AuthContext", () => {
   const mockPush = jest.fn();
 
   beforeEach(() => {
     (useRouter as jest.Mock).mockReturnValue({ push: mockPush });
   });
 
-  it('provides authentication functionality', async () => {
+  it("provides authentication functionality", async () => {
     const { result } = renderHook(() => useAuth(), {
       wrapper: AuthProvider,
     });
@@ -19,17 +19,18 @@ describe('AuthContext', () => {
     expect(result.current.user).toBeNull();
 
     await act(async () => {
-      const success = await result.current.login('test@example.com', 'password123');
+      const success = await result.current.login(
+        "test@example.com",
+        "password123"
+      );
       expect(success).toBe(true);
     });
 
-    console.log(result.current);
-
     expect(result.current.user).toEqual({
-      id: '1',
-      email: 'test@example.com',
-      name: 'Test User',
-      password: 'password123'
+      id: "1",
+      email: "test@example.com",
+      name: "Test User",
+      password: "password123",
     });
 
     act(() => {
@@ -37,6 +38,6 @@ describe('AuthContext', () => {
     });
 
     expect(result.current.user).toBeNull();
-    expect(mockPush).toHaveBeenCalledWith('/');
+    expect(mockPush).toHaveBeenCalledWith("/");
   });
-}); 
+});
