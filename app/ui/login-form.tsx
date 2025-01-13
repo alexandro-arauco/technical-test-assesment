@@ -45,6 +45,7 @@ export default function LoginForm() {
         <div className="w-full">
           <div>
             <Input
+              id="email"
               type="email"
               label="Email"
               placeholder="e.g. test@example.com"
@@ -55,6 +56,7 @@ export default function LoginForm() {
           </div>
           <div className="mt-4">
             <Input
+              id="password"
               type="password"
               label="Password"
               placeholder="e.g. password123"
