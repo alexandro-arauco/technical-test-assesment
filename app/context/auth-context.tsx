@@ -58,7 +58,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
       if (email === MOCK_USER.email && password === MOCK_USER.password) {
-        const { password: _, ...userWithoutPassword } = MOCK_USER;
+        const { ...userWithoutPassword } = MOCK_USER;
 
         // Set user in state
         setUser(userWithoutPassword);
@@ -73,7 +73,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       setIsLoading(false);
       return false;
-    } catch (error) {
+    } catch (error: unknown) {
       setIsLoading(false);
       return false;
     }
