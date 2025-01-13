@@ -33,7 +33,8 @@ export default function LoginForm() {
       } else {
         setError("Invalid email or password");
       }
-    } catch (err) {
+    } catch (error: unknown) {
+      console.log(error);
       setError("An error occurred during login");
     }
   };
