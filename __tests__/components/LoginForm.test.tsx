@@ -1,13 +1,13 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import LoginForm from '@/app/ui/login-form';
-import { useAuth } from '@/app/context/auth-context';
-import { useRouter } from 'next/navigation';
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import LoginForm from "@/app/ui/login-form";
+import { useAuth } from "@/app/context/auth-context";
+import { useRouter } from "next/navigation";
 
 // Mock the hooks
-jest.mock('@/app/context/auth-context');
-jest.mock('next/navigation');
+jest.mock("@/app/context/auth-context");
+jest.mock("next/navigation");
 
-describe('LoginForm Component', () => {
+describe("LoginForm Component", () => {
   const mockLogin = jest.fn();
   const mockPush = jest.fn();
 
@@ -20,39 +20,39 @@ describe('LoginForm Component', () => {
     (useRouter as jest.Mock).mockReturnValue({ push: mockPush });
   });
 
-  it('handles successful login', async () => {
+  it("handles successful login", async () => {
     mockLogin.mockResolvedValueOnce(true);
 
     render(<LoginForm />);
 
-    fireEvent.change(screen.getByLabelText('Email'), {
-      target: { value: 'test@example.com' },
+    fireEvent.change(screen.getByLabelText("Email"), {
+      target: { value: "test@example.com" },
     });
-    fireEvent.change(screen.getByLabelText('Password'), {
-      target: { value: 'password123' },
+    fireEvent.change(screen.getByLabelText("Password"), {
+      target: { value: "password123" },
     });
-    fireEvent.click(screen.getByText('Log in'));
+    fireEvent.click(screen.getByTestId("btn-login"));
 
     await waitFor(() => {
-      expect(mockPush).toHaveBeenCalledWith('/dashboard');
+      expect(mockPush).toHaveBeenCalledWith("/dashboard");
     });
   });
 
-  it('displays error message on failed login', async () => {
+  it("displays error message on failed login", async () => {
     mockLogin.mockResolvedValueOnce(false);
 
     render(<LoginForm />);
 
-    fireEvent.change(screen.getByLabelText('Email'), {
-      target: { value: 'wrong@example.com' },
+    fireEvent.change(screen.getByLabelText("Email"), {
+      target: { value: "wrong@example.com" },
     });
-    fireEvent.change(screen.getByLabelText('Password'), {
-      target: { value: 'wrongpassword' },
+    fireEvent.change(screen.getByLabelText("Password"), {
+      target: { value: "wrongpassword" },
     });
-    fireEvent.click(screen.getByText('Log in'));
+    fireEvent.click(screen.getByTestId("btn-login"));
 
     await waitFor(() => {
-      expect(screen.getByText('Invalid email or password')).toBeInTheDocument();
+      expect(screen.getByText("Invalid email or password")).toBeInTheDocument();
     });
   });
-}); 
+});

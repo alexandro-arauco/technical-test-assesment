@@ -70,7 +70,7 @@ export default function LoginForm() {
         </div>
 
         <div className="mt-4">
-          <Button type="submit" disabled={isLoading}>
+          <Button data-testid="btn-login" type="submit" disabled={isLoading}>
             {isLoading ? "Logging in..." : "Log in"}
           </Button>
         </div>

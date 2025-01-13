@@ -199,6 +199,7 @@ export default function UIKitShowcase() {
             <Card title="Form Inputs" size="lg" variant="bordered">
               <div className="space-y-4">
                 <Input
+                  id="text"
                   type="text"
                   label="Text Input"
                   placeholder="Enter text"
@@ -207,12 +208,14 @@ export default function UIKitShowcase() {
                 />
 
                 <Input
+                  id="email"
                   type="email"
                   label="Email Input"
                   placeholder="Enter email"
                 />
 
                 <Input
+                  id="error-input"
                   label="Error Input"
                   placeholder="This input has an error"
                   error="This field has an error message"
