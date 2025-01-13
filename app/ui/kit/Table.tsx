@@ -1,6 +1,7 @@
-'use client';
+"use client";
 
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
+import { Button } from "./Button";
 
 interface Column<T> {
   header: string;
@@ -23,7 +24,7 @@ export function Table<T>({
   currentPage,
   totalPages,
   onPageChange,
-  className = '',
+  className = "",
 }: TableProps<T>) {
   return (
     <div className="w-full">
@@ -64,43 +65,39 @@ export function Table<T>({
       {totalPages && totalPages > 1 && (
         <div className="flex items-center justify-between px-4 py-3 bg-white border-t border-gray-200 sm:px-6">
           <div className="flex justify-between sm:hidden">
-            <button
+            <Button
               onClick={() => onPageChange?.(currentPage! - 1)}
               disabled={currentPage === 1}
-              className="relative inline-flex items-center px-4 py-2 text-sm font-medium rounded-md text-gray-700 bg-white border border-gray-300 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Previous
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={() => onPageChange?.(currentPage! + 1)}
               disabled={currentPage === totalPages}
-              className="ml-3 relative inline-flex items-center px-4 py-2 text-sm font-medium rounded-md text-gray-700 bg-white border border-gray-300 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Next
-            </button>
+            </Button>
           </div>
           <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
             <div>
               <p className="text-sm text-gray-700">
-                Page <span className="font-medium">{currentPage}</span> of{' '}
+                Page <span className="font-medium">{currentPage}</span> of{" "}
                 <span className="font-medium">{totalPages}</span>
               </p>
             </div>
             <div>
-              <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px">
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                  <button
-                    key={page}
-                    onClick={() => onPageChange?.(page)}
-                    className={`relative inline-flex items-center px-4 py-2 text-sm font-medium border ${
-                      currentPage === page
-                        ? 'z-10 bg-blue-50 border-blue-500 text-blue-600'
-                        : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50'
-                    }`}
-                  >
-                    {page}
-                  </button>
-                ))}
+              <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px gap-2">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                  (page) => (
+                    <Button
+                      key={page}
+                      onClick={() => onPageChange?.(page)}
+                      variant="outline"
+                    >
+                      {page}
+                    </Button>
+                  )
+                )}
               </nav>
             </div>
           </div>
@@ -108,4 +105,4 @@ export function Table<T>({
       )}
     </div>
   );
-} 
+}
