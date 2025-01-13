@@ -23,10 +23,13 @@ describe('AuthContext', () => {
       expect(success).toBe(true);
     });
 
+    console.log(result.current);
+
     expect(result.current.user).toEqual({
       id: '1',
       email: 'test@example.com',
       name: 'Test User',
+      password: 'password123'
     });
 
     act(() => {
