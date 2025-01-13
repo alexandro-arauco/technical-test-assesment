@@ -38,7 +38,7 @@ export default function UIKitShowcase() {
       header: "Actions",
       accessor: "id" as keyof User,
       cell: (user: User) => (
-        <Button size="sm" variant="outline">
+        <Button size="sm" variant="outline" onClick={() => console.log(user)}>
           Edit
         </Button>
       ),
