@@ -1,13 +1,9 @@
-import { Card } from '@/app/ui/kit/Card';
+import UIKitShowcase from "../ui/kit/showcase";
 
 export default function DashboardPage() {
   return (
-    <div className="space-y-6">
-      <Card title="Welcome to Dashboard" variant="default">
-        <p className="text-gray-600">
-          You have successfully logged in. This is a protected route.
-        </p>
-      </Card>
+    <div className="min-h-screen bg-gray-50">
+      <UIKitShowcase />
     </div>
   );
-} 
+}
