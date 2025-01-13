@@ -44,7 +44,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (savedUser) {
       try {
         setUser(JSON.parse(savedUser));
-      } catch (error: any) {
+      } catch (error: unknown) {
         console.error("Error parsing user data from cookie", error);
       }
     }
@@ -73,7 +73,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       setIsLoading(false);
       return false;
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error(error);
       setIsLoading(false);
       return false;
