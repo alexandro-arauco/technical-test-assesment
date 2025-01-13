@@ -1,16 +1,18 @@
-import { InputHTMLAttributes } from 'react';
+import { InputHTMLAttributes } from "react";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: string;
-  type?: 'text' | 'email' | 'password' | 'number';
+  type?: "text" | "email" | "password" | "number";
+  id: string;
 }
 
 export function Input({
   label,
   error,
-  type = 'text',
-  className = '',
+  type = "text",
+  className = "",
+  id,
   ...props
 }: InputProps) {
   return (
@@ -21,6 +23,7 @@ export function Input({
         </label>
       )}
       <input
+        id={id}
         type={type}
         className={`
           w-full
@@ -34,16 +37,12 @@ export function Input({
           focus:border-blue-500
           outline-none
           transition-colors
-          ${error ? 'border-red-500' : ''}
+          ${error ? "border-red-500" : ""}
           ${className}
         `}
         {...props}
       />
-      {error && (
-        <p className="mt-1 text-sm text-red-600">
-          {error}
-        </p>
-      )}
+      {error && <p className="mt-1 text-sm text-red-600">{error}</p>}
     </div>
   );
-} 
+}
