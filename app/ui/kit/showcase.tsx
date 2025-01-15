@@ -99,17 +99,20 @@ export default function UIKitShowcase() {
                     </h3>
                     <div className="space-y-3">
                       <Checkbox
+                        id="default-checkbox"
                         label="Default Checkbox"
                         checked={checkboxValue}
                         onChange={setCheckboxValue}
                       />
                       <Checkbox
+                        id="disabled-checkbox"
                         label="Disabled Checkbox"
                         checked={true}
                         onChange={() => {}}
                         disabled
                       />
                       <Checkbox
+                        id="error-checkbox"
                         label="Error Checkbox"
                         checked={false}
                         onChange={() => {}}

@@ -1,3 +1,5 @@
+import { InputHTMLAttributes } from "react";
+
 interface CheckboxProps {
   label?: string;
   checked: boolean;
@@ -5,6 +7,7 @@ interface CheckboxProps {
   disabled?: boolean;
   error?: string;
   className?: string;
+  id?: string;
 }
 
 export function Checkbox({
@@ -13,12 +16,14 @@ export function Checkbox({
   onChange,
   disabled = false,
   error,
-  className = '',
+  className = "",
+  id = `checkbox-${Math.random().toString(36).substr(2, 9)}`,
 }: CheckboxProps) {
   return (
     <div className={`flex items-start ${className}`}>
       <div className="flex items-center h-5">
         <input
+          id={id}
           type="checkbox"
           checked={checked}
           onChange={(e) => onChange(e.target.checked)}
@@ -29,22 +34,23 @@ export function Checkbox({
             text-blue-600
             focus:ring-blue-500
             disabled:opacity-50
-            ${error ? 'border-red-500' : ''}
+            ${error ? "border-red-500" : ""}
           `}
         />
       </div>
       {label && (
         <div className="ml-3">
-          <label className={`
-            text-sm
-            ${disabled ? 'text-gray-400' : 'text-gray-700'}
-            ${error ? 'text-red-500' : ''}
-          `}>
+          <label
+            htmlFor={id}
+            className={`
+              text-sm
+              ${disabled ? "text-gray-400" : "text-gray-700"}
+              ${error ? "text-red-500" : ""}
+            `}
+          >
             {label}
           </label>
-          {error && (
-            <p className="mt-1 text-sm text-red-600">{error}</p>
-          )}
+          {error && <p className="mt-1 text-sm text-red-600">{error}</p>}
         </div>
       )}
     </div>
