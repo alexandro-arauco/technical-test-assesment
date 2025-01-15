@@ -157,17 +157,16 @@ export default function UIKitShowcase() {
           </section>
 
           {/* Table Section */}
-          <section>
-            <Card className="max-w-5xl  mx-auto" title="Table">
-              <Table<User>
-                columns={tableColumns}
-                data={mockUsers}
-                currentPage={currentPage}
-                totalPages={3}
-                onPageChange={setCurrentPage}
-              />
-            </Card>
-          </section>
+
+          <Card className="max-w-[100%]  mx-auto" title="Table">
+            <Table<User>
+              columns={tableColumns}
+              data={mockUsers}
+              currentPage={currentPage}
+              totalPages={3}
+              onPageChange={setCurrentPage}
+            />
+          </Card>
 
           {/* Buttons Section */}
           <section className="grid grid-cols-1 lg:grid-cols-2 gap-8">
